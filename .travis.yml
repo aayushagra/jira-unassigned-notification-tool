@@ -1,0 +1,11 @@
+language: python
+python:
+  - "3.8"
+install:
+  - pip install -r requirements/test.txt
+jobs:
+  include:
+    - stage: lint
+      script: pylint jira-unassigned-notification-tool
+    - stage: pep8
+      script: flake8 jira-unassigned-notification-tool
