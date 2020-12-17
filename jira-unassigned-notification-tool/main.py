@@ -17,6 +17,7 @@ def send_notification(text):
     """Send Notification via IFTTT webhook"""
     result = requests.post(iftt_url, data={'value1': text})
     result.raise_for_status()
+    print(text)
 
 
 client = JIRA(jira_url, auth=(jira_username, jira_password))
@@ -34,6 +35,6 @@ while True:
         if issue.fields.assignee is None:
             MSG = "[%s Unassigned] %s" % (issue.key, issue.fields.summary)
         else:
-            MSG = "[%s No-Reviewer] %s" % (issue.key, issue.fields.summary)
+            MSG = "[%s %s] %s" % (issue.key, issue.fields.assignee.displayName, issue.fields.summary)
 
         send_notification(MSG)
