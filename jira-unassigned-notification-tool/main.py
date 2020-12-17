@@ -23,7 +23,6 @@ def send_notification(text):
 client = JIRA(jira_url, auth=(jira_username, jira_password))
 
 while True:
-    time.sleep(ping_duration_seconds)
     interesting_issues = client.search_issues(jira_search)
 
     for issue in interesting_issues:
@@ -38,3 +37,4 @@ while True:
             MSG = "[%s %s] %s" % (issue.key, issue.fields.assignee.displayName, issue.fields.summary)
 
         send_notification(MSG)
+        time.sleep(ping_duration_seconds)
