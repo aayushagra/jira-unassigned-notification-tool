@@ -37,4 +37,4 @@ while True:
             MSG = "[%s %s] %s" % (issue.key, issue.fields.assignee.displayName, issue.fields.summary)
 
         send_notification(MSG)
-        time.sleep(ping_duration_seconds)
+    time.sleep(ping_duration_seconds)
