@@ -11,7 +11,7 @@ jira_username = os.environ["jira_username"]
 jira_password = os.environ["jira_password"]
 jira_url = os.environ["jira_url"]
 jira_search = os.environ["jira_search"]
-
+ping_duration_seconds = int(os.environ["ping_duration_seconds"])
 
 def send_notification(text):
     """Send Notification via IFTTT webhook"""
@@ -22,7 +22,7 @@ def send_notification(text):
 client = JIRA(jira_url, auth=(jira_username, jira_password))
 
 while True:
-    time.sleep(1)
+    time.sleep(ping_duration_seconds)
     interesting_issues = client.search_issues(jira_search)
 
     for issue in interesting_issues:
